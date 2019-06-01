@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="max">
+<head>
+	<title>PRODUCTOS_MAX</title>
+	<link rel="icon" type="text/css" href="images/favicon_3.ico">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+<body ng-controller="productoCTRL">
+	<div class="row">
+		<div class="col">
+			<img src="images/logo.png" class="img">
+		</div>
+	</div>
+	<br>
+	<br>
+	<ul>
+  		<li><a href="#home">Home</a></li>
+  		<li><a href="#news">News</a></li>
+  		<li><a href="#contact">Contact</a></li>
+  		<li><a href="#about">About</a></li>
+	</ul>
+	<br>
+	<br>
+	<form method="POST">
+		<div class="row">
+			<div class="col">
+				<h5>Imagen</h5>
+				<img src="">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<h5>Product name</h5>
+				<input type="text" name="name" ng-model="Producto.name">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<h5>Categories</h5>
+				<input type="text" name="categories" ng-model="Producto.Categories">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<h5>Price</h5>
+				<input type="number" name="price" min="300" max="20000" ng-model="Producto.Price">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<h5>Color</h5>
+				<input type="color" name="color" placeholder="you selec color" ng-model="Producto.Color">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<h5>Quantity</h5>
+				<input type="number" name="Quantity"  min="0" max="10000" ng-model="Producto.Quantity">
+			</div>
+		</div>	
+		<br>
+		<div class="row">
+			<div class="col">
+				<h5>Date of delivery</h5>
+				<input type="date" name="date" ng-model="Producto.date">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<h5>Favorites</h5>
+				<input type="checkbox" name="Favoritess" ng-model="Producto.favorites"> Add to Favorites
+				<br>
+				<input type="checkbox" name="Favoritess" ng-model="Producto.favorites"> Do not add to favorites
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<h5>offers</h5>
+				<input type="checkbox" name="offers" ng-model="Producto.offers"> Yes
+				<br>
+				<input type="checkbox" name="offers" ng.model="Producto.offers"> No
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h5>Product model</h5>
+				<textarea class="textA" ng-model="Producto.models"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="button" ng-click="cargarproductos(Producto)">cargar</button>
+			</div>
+		</div>
+	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+s
+	<script src="js/script.js"></script>
+
+</body>
+</html>

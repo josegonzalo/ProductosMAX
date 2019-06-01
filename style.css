@@ -1,0 +1,40 @@
+body{
+	background-color: #e6e6e6e6
+}
+img{
+display:block;
+margin:auto;
+}
+.textA{
+	height: 6em;
+ 	width: 400px;
+}
+/*Barra del navegador*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #990000;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+li{
+	float: left;
+}
+
+li a {
+  display: block;
+  color: #ffff;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #666666;
+  color: white;
+}
