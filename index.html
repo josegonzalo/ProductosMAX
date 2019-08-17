@@ -5,6 +5,8 @@
 	<link rel="icon" type="text/css" href="images/favicon_3.ico">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome.css">
 <body ng-controller="productoCTRL">
 	<div class="row">
 		<div class="col">
@@ -22,10 +24,17 @@
 	<br>
 	<br>
 	<form method="POST">
-		<div class="row">
-			<div class="col">
-				<h5>Imagen</h5>
-					<input type="file" ng-model="editItem._attachments_uri.image" accept="image/*" app-filereader />
+			<div class="row">
+				<div class="col">
+					<div class="preview-image-container" style="cursor: default;">
+					<input type="file" name="File" id="File" class="image-url form-control" accept="image/*" style="display:none;">
+					<div class="preview-image-dummy"></div><img class="preview-image-url">
+					<div class="preview-image-instruction" style="background-color: inherit; cursor: default;"><i class="fa fa-4x fa-cloud-upload" aria-hidden="true"></i>
+					<div class="preview-image-btn-browse btn btn-primary">Browse</div>
+					<p>or drop a file here.</p>
+					</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<br>
@@ -100,11 +109,11 @@
 			</div>
 		</div>
 	</form>
-	 <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
-	 <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-
+	<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
 	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+	<script type="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script src="js/script.js"></script>
 
