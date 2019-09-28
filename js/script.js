@@ -14,16 +14,13 @@ firebase.initializeApp(firebaseConfig);
   // Get a non-default Storage bucket
   var storage = firebase.app().storage("gs://maxapp-659bd.appspot.com");
 	var file;
+	var files;
 
 
 var max = angular.module("max", [])
 	max.controller("productoCTRL", function ($scope){
 			$scope.Producto = {}
-
-
-
-
-
+			$scope.logo = {}
 
 
 		$scope.cargarproductos = function(x){
@@ -40,18 +37,29 @@ var max = angular.module("max", [])
 					
 					firebase.database().ref("/Producto").push($scope.Producto);
 
-
 				})
+			})
 
-
-
-			});
-
-
-			console.log(file.result)
 			//firebase.database().ref("/Producto").push($scope.Producto)
 		}
+
+		$scope.cargaproductos = function(z){
+			$scope.logo = z
+
+			storage.ref(file.name).put(file).then(function(snapshot){
+
+				var prodRef = storage.ref(file.name);
+
+				prodRef.getDownloadURL().then(function(url){
+
+					$scope.logo["fotoLogo"] = url;
+
+					firebase.database().ref("/logo").push($scope.logo);
+				})
+			})
+		}
 	})
+
 //Muestra la imagen de en la ventana de productos
 	function archivo(evt) {
 		  var files = evt.target.files; // FileList object
@@ -79,3 +87,33 @@ var max = angular.module("max", [])
 	}
 			 
 	  document.getElementById('files').addEventListener('change', archivo, false);
+
+
+	  // imagen dos
+	  function archivo(evt) {
+		  var files = evt.target.files; // FileList object
+		  //Obtenemos la imagen del campo "file". 
+		  for (var i = 0, f; f = files[i]; i++) {
+				fileName = files[i];
+
+
+			   //Solo admitimos imágenes.
+			   if (!f.type.match('image.*')) {
+					continue;
+			   }
+			   var reader = new FileReader();
+			   
+			   reader.onload = (function(theFile) {
+				   return function(e) {
+				   // Creamos la imagen.
+						  document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+				   };
+			   })(f);
+	 
+			   reader.readAsDataURL(f);
+		   }
+		   file = files[0];
+	}
+			 
+	  document.getElementById('files').addEventListener('change', archivo, false);
+

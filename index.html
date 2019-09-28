@@ -5,6 +5,7 @@
 	<link rel="icon" type="text/css" href="images/favicon_3.ico">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <body ng-controller="productoCTRL">
 	<div class="row">
 		<div class="col">
@@ -21,7 +22,13 @@
 						<output id="list"></output>
 				</div>
 			</div>
-		</div>
+		<br>
+			<div class="row">
+				<div class="col">
+						<input type="file" id="files" name="files[]"/><br />
+						<output id="list"></output>
+				</div>
+			</div>
 		<br>
 		<div class="row">
 			<div class="col">
@@ -113,14 +120,13 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<button type="button" ng-click="cargarproductos(Producto)" onClick="reloadThePage()">cargar</button>
+				<button type="button" ng-click="cargarproductos(Producto); cargaproductos(logo)">cargar</button>
 			</div>
 		</div>
 	</form>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-storage.js"></script>
-
+	<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-storage.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
