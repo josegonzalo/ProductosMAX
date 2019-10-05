@@ -14,7 +14,6 @@ firebase.initializeApp(firebaseConfig);
   // Get a non-default Storage bucket
   var storage = firebase.app().storage("gs://maxapp-659bd.appspot.com");
 	var file;
-	var files;
 
 
 var max = angular.module("max", [])
@@ -41,22 +40,6 @@ var max = angular.module("max", [])
 			})
 
 			//firebase.database().ref("/Producto").push($scope.Producto)
-		}
-
-		$scope.cargaproductos = function(z){
-			$scope.logo = z
-
-			storage.ref(file.name).put(file).then(function(snapshot){
-
-				var prodRef = storage.ref(file.name);
-
-				prodRef.getDownloadURL().then(function(url){
-
-					$scope.logo["fotoLogo"] = url;
-
-					firebase.database().ref("/logo").push($scope.logo);
-				})
-			})
 		}
 	})
 
@@ -89,31 +72,44 @@ var max = angular.module("max", [])
 	  document.getElementById('files').addEventListener('change', archivo, false);
 
 
-	  // imagen dos
-	  function archivo(evt) {
-		  var files = evt.target.files; // FileList object
-		  //Obtenemos la imagen del campo "file". 
-		  for (var i = 0, f; f = files[i]; i++) {
-				fileName = files[i];
+	//imagen del logo a ver si funciona tocad madera...!
+angular.module('appFilereader', []).directive('appFilereader', function($q) {
+    var slice = Array.prototype.slice;
 
+    return {
+        restrict: 'A',
+        require: '?ngModel',
+        link: function(scope, element, attrs, ngModel) {
+                if (!ngModel) return;
 
-			   //Solo admitimos imágenes.
-			   if (!f.type.match('image.*')) {
-					continue;
-			   }
-			   var reader = new FileReader();
-			   
-			   reader.onload = (function(theFile) {
-				   return function(e) {
-				   // Creamos la imagen.
-						  document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-				   };
-			   })(f);
-	 
-			   reader.readAsDataURL(f);
-		   }
-		   file = files[0];
-	}
-			 
-	  document.getElementById('files').addEventListener('change', archivo, false);
+                ngModel.$render = function() {};
 
+                element.bind('change', function(e) {
+                    var element = e.target;
+
+                    $q.all(slice.call(element.files, 0).map(readFile))
+                        .then(function(values) {
+                            if (element.multiple) ngModel.$setViewValue(values);
+                            else ngModel.$setViewValue(values.length ? values[0] : null);
+                        });
+
+                    function readFile(file) {
+                        var deferred = $q.defer();
+
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            deferred.resolve(e.target.result);
+                        };
+                        reader.onerror = function(e) {
+                            deferred.reject(e);
+                        };
+                        reader.readAsDataURL(file);
+
+                        return deferred.promise;
+                    }
+
+                }); //change
+
+            } //link
+    }; //return
+});
